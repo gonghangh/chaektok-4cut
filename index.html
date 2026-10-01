@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>책톡네컷 · CHAEKTOK 4-CUTS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="icon" href="assets/chaektok_logo.png">
+</head>
+<body oncontextmenu="return false;" ondragstart="return false;">
+    <div class="kiosk-app-wrapper">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <img src="assets/chaektok_logo.png" alt="책톡 로고" class="book-logo-img">
+                <div class="brand-title-wrap">
+                    <div class="brand-sub">CHAEKTOK PHOTO BOOTH</div>
+                    <div class="brand-title">
+                        책톡<span>네컷</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-status">
+                <div class="status-badge" id="badge-printer">
+                    <div class="status-dot"></div>
+                    <span id="printer-status-text">준비 완료</span>
+                </div>
+                <button class="btn-icon" id="btn-sound-toggle" title="사운드 켜기/끄기">🔊</button>
+                <button class="btn-icon" id="btn-fullscreen-toggle" title="전체화면">⛶</button>
+                <button class="btn-icon" id="btn-settings" title="설정">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Main Screen Container -->
+        <main class="screen-container">
+            <!-- SCREEN 1: Welcome & Standby -->
+            <section class="screen active" id="screen-welcome">
+                <div class="welcome-emblem-wrap">
+                    <img src="assets/chaektok_logo.png" alt="책톡네컷" class="welcome-emblem-img">
+                </div>
+
+                <div class="book-board">
+                    <div class="book-board-header">
+                        <span>BOOK CLUB</span>
+                        <span>TODAY'S THEME</span>
+                        <span>STATUS</span>
+                    </div>
+                    <div class="book-board-row">
+                        <span class="highlight">책톡네컷</span>
+                        <span>책과 함께하는 빛나는 오늘 📖</span>
+                        <span class="status-blink">● OPEN</span>
+                    </div>
+                </div>
+
+                <h1 class="welcome-title">책톡네컷</h1>
+                <p class="welcome-subtitle">책과 함께 나눈 따뜻한 이야기와 소중한 순간들을 4컷 사진에 담아보세요!</p>
+
+                <button class="btn-start-action" id="btn-start-checkin">
+                    <span>📚 화면을 터치하여 촬영 시작</span>
+                </button>
+            </section>
+
+            <!-- SCREEN 2: Layout & Options -->
+            <section class="screen" id="screen-layout">
+                <div class="section-header">
+                    <h2 class="section-title">프레임 및 옵션 선택</h2>
+                    <p class="section-desc">책톡네컷 시그니처 프레임과 촬영 시간을 확인해주세요</p>
+                </div>
+
+                <div class="config-container">
+                    <!-- 1. 프레임 연동 (책톡네컷 단독 연동) -->
+                    <div>
+                        <div class="option-group-title">
+                            <span>🎨 책톡 시그니처 프레임</span>
+                            <label class="btn-upload-frame" for="input-custom-frame-file" title="새 프레임 업로드">
+                                <span>➕ 새 프레임 추가</span>
+                                <input type="file" id="input-custom-frame-file" accept="image/png, image/jpeg" style="display: none;">
+                            </label>
+                        </div>
+                        <div class="cards-grid-single">
+                            <!-- 책톡네컷 프레임 -->
+                            <div class="select-card active" id="card-chaektok" data-theme="custom_chaektok">
+                                <div class="card-thumb-wrap">
+                                    <img src="frames/frame_chaektok.png" alt="책톡네컷">
+                                </div>
+                                <div class="card-info">
+                                    <span class="badge-frame-type">책톡ism 4컷</span>
+                                    <div class="card-label">책톡네컷 (Chaektokism)</div>
+                                    <div class="card-desc">책과 독서의 감성을 담은 스태거드 4컷 시그니처 프레임</div>
+                                </div>
+                            </div>
+
+                            <!-- 사용자 업로드 프레임 카드 (업로드 시 표시) -->
+                            <div class="select-card" id="card-custom-frame" style="display: none;">
+                                <div class="card-thumb-wrap">
+                                    <img src="" alt="업로드 프레임">
+                                </div>
+                                <div class="card-info">
+                                    <span class="badge-frame-type">사용자 커스텀</span>
+                                    <div class="card-label">내가 올린 프레임</div>
+                                    <div class="card-desc">직접 추가한 커스텀 프레임이 적용됩니다</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 촬영 카운트다운 타이머 -->
+                    <div>
+                        <div class="option-group-title">
+                            <span>⏱️ 촬영 타이머 간격</span>
+                        </div>
+                        <div class="timer-btn-group">
+                            <button class="timer-btn active" data-seconds="5">5초 (빠르게)</button>
+                            <button class="timer-btn" data-seconds="8">8초 (추천)</button>
+                            <button class="timer-btn" data-seconds="10">10초 (여유롭게)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-nav-bar">
+                    <button class="btn-nav-back" id="btn-back-to-welcome">처음으로</button>
+                    <button class="btn-nav-next" id="btn-to-shooting">카메라 촬영 시작 📸</button>
+                </div>
+            </section>
+
+            <!-- SCREEN 3: Camera Shooting -->
+            <section class="screen" id="screen-shooting">
+                <div class="shooting-layout">
+                    <div class="camera-preview-container">
+                        <video id="cam-video" autoplay playsinline muted></video>
+
+                        <div class="cam-top-badges">
+                            <div class="badge-cuts" id="cuts-indicator">CUT 1 / 4</div>
+                            <button class="btn-cam-mirror active" id="btn-cam-mirror" title="좌우 반전">🪞 거울모드</button>
+                        </div>
+
+                        <!-- Countdown Overlay -->
+                        <div class="countdown-overlay" id="countdown-overlay">
+                            <div class="countdown-number" id="countdown-number">5</div>
+                            <div class="countdown-hint">카메라를 보고 예쁜 포즈를 취해주세요! ✨</div>
+                        </div>
+
+                        <!-- Flash Overlay -->
+                        <div class="flash-overlay" id="flash-overlay"></div>
+                    </div>
+
+                    <!-- Slots Progress Strip -->
+                    <div class="shots-strip">
+                        <div class="shot-slot current" id="slot-0"><span>1</span></div>
+                        <div class="shot-slot" id="slot-1"><span>2</span></div>
+                        <div class="shot-slot" id="slot-2"><span>3</span></div>
+                        <div class="shot-slot" id="slot-3"><span>4</span></div>
+                    </div>
+
+                    <!-- Shooting Controls -->
+                    <div class="shooting-controls">
+                        <button class="btn-retake" id="btn-retake-last" title="마지막 컷 다시 찍기">↺ 다시 찍기</button>
+                        <button class="btn-trigger-shot" id="btn-start-countdown">
+                            <span>📸</span>
+                            <span id="btn-shoot-label">1번째 컷 촬영하기 (총 4컷)</span>
+                        </button>
+                    </div>
+
+                    <div class="bottom-nav-bar" style="margin-top: 0; padding-top: 4px;">
+                        <button class="btn-nav-back" id="btn-back-to-layout">이전으로</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 4: Customize -->
+            <section class="screen" id="screen-customize">
+                <div class="customize-layout">
+                    <div class="preview-canvas-wrap">
+                        <canvas id="canvas-preview"></canvas>
+                    </div>
+
+                    <!-- Tools Panel -->
+                    <div class="tools-panel">
+                        <!-- Filters -->
+                        <div>
+                            <div class="tool-label"><span>✨ 감성 필터 선택</span></div>
+                            <div class="filter-row">
+                                <button class="filter-card active" data-filter="normal">원본</button>
+                                <button class="filter-card" data-filter="bright">뽀샤시</button>
+                                <button class="filter-card" data-filter="bw">흑백</button>
+                                <button class="filter-card" data-filter="vintage">빈티지 서재</button>
+                                <button class="filter-card" data-filter="warm">따뜻한 감성</button>
+                                <button class="filter-card" data-filter="cool">차분한 쿨톤</button>
+                            </div>
+                        </div>
+
+                        <!-- Stickers / Stamps -->
+                        <div>
+                            <div class="tool-label">
+                                <span>🎨 책톡 스티커 꾸미기 (클릭하여 추가 후 드래그)</span>
+                                <div class="stamp-actions">
+                                    <button class="btn-stamp-action" id="btn-remove-last-stamp">하나 지우기</button>
+                                    <button class="btn-stamp-action" id="btn-clear-stamps">모두 지우기</button>
+                                </div>
+                            </div>
+                            <div class="stamp-row">
+                                <button class="btn-stamp-item active" data-stamp="📚">📚</button>
+                                <button class="btn-stamp-item" data-stamp="📖">📖</button>
+                                <button class="btn-stamp-item" data-stamp="💬">💬</button>
+                                <button class="btn-stamp-item" data-stamp="✨">✨</button>
+                                <button class="btn-stamp-item" data-stamp="☕">☕</button>
+                                <button class="btn-stamp-item" data-stamp="👓">👓</button>
+                                <button class="btn-stamp-item" data-stamp="🌿">🌿</button>
+                                <button class="btn-stamp-item" data-stamp="🧸">🧸</button>
+                                <button class="btn-stamp-item" data-stamp="❤️">❤️</button>
+                                <button class="btn-stamp-item" data-stamp="🍀">🍀</button>
+                                <button class="btn-stamp-item" data-stamp="🎓">🎓</button>
+                                <button class="btn-stamp-item" data-stamp="📝">📝</button>
+                                <button class="btn-stamp-item" data-stamp="🌟">🌟</button>
+                            </div>
+                            <div style="margin-top: 6px;">
+                                <button class="btn-stamp-action" id="btn-add-stamp-center" style="width: 100%; padding: 6px;">➕ 선택한 스티커 중앙에 추가</button>
+                            </div>
+                        </div>
+
+                        <!-- Quick Tags & Custom Text -->
+                        <div>
+                            <div class="tool-label"><span>📝 오늘의 책톡 문구</span></div>
+                            <div class="tag-pills-row">
+                                <button class="tag-pill" data-text="📚 책과 함께한 오늘">📚 책과 함께한 오늘</button>
+                                <button class="tag-pill" data-text="💬 마음을 나누는 책톡">💬 마음을 나누는 책톡</button>
+                                <button class="tag-pill" data-text="🌿 도서관의 우리들">🌿 도서관의 우리들</button>
+                                <button class="tag-pill" data-text="📖 읽고 쓰고 사랑하라">📖 읽고 쓰고 사랑하라</button>
+                                <button class="tag-pill" data-text="✨ 반짝이는 이야기의 한 페이지">✨ 반짝이는 이야기</button>
+                                <button class="tag-pill" data-text="🎓 2026 책톡 동아리">🎓 2026 책톡 동아리</button>
+                            </div>
+                            <input type="text" class="input-book-text" id="input-book-text" placeholder="문구를 직접 입력할 수도 있습니다" value="책과 함께한 소중한 순간 📚">
+                        </div>
+                    </div>
+
+                    <div class="bottom-nav-bar" style="margin-top: 0; padding-top: 4px;">
+                        <button class="btn-nav-back" id="btn-back-to-shooting">재촬영</button>
+                        <button class="btn-nav-next" id="btn-to-print">완성 및 인쇄/저장 🖨️</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 5: Print & Download -->
+            <section class="screen" id="screen-print">
+                <div class="print-screen-layout">
+                    <div class="section-header">
+                        <h2 class="section-title">책톡네컷 완성! 🎉</h2>
+                        <p class="section-desc" id="target-printer-status">용지 규격을 선택하고 출력 또는 저장하세요</p>
+                    </div>
+
+                    <div class="print-preview-side">
+                        <img id="print-final-thumb" src="" alt="책톡네컷 완성본">
+                    </div>
+
+                    <div class="print-controls-side">
+                        <!-- Paper Selector -->
+                        <div class="paper-selector">
+                            <div class="paper-select-card active" data-paper="a4">
+                                <div class="paper-title">📄 A4 4장 모아찍기</div>
+                                <div class="paper-desc">1장에 4장 인쇄 (가위로 잘라 친구와 나눔)</div>
+                            </div>
+                            <div class="paper-select-card" data-paper="4x6">
+                                <div class="paper-title">🖼️ 4x6 포토 인화지</div>
+                                <div class="paper-desc">포토용지에 꽉 차게 1장 인쇄</div>
+                            </div>
+                        </div>
+
+                        <div class="print-guide-box" id="print-guide-text">
+                            A4 1장에 4장이 인쇄되어 친구들과 1장씩 나누어 갖기 좋습니다 ✂️
+                        </div>
+
+                        <!-- Print Action -->
+                        <button class="btn-trigger-print" id="btn-trigger-print">
+                            <span>🖨️</span>
+                            <span id="btn-print-label">A4 4장 모아찍기 인쇄</span>
+                        </button>
+
+                        <!-- Download Actions -->
+                        <div class="download-btn-group">
+                            <button class="btn-download-action" id="btn-download-single">💾 4컷 사진 저장</button>
+                            <button class="btn-download-action" id="btn-download-a4">💾 A4 4장 모음 저장</button>
+                            <button class="btn-download-action" id="btn-show-qr">📱 모바일 QR</button>
+                        </div>
+                    </div>
+
+                    <div class="bottom-nav-bar" style="margin-top: 0; padding-top: 4px;">
+                        <button class="btn-nav-back" id="btn-finish-home" style="width: 100%;">처음으로 돌아가기 🏠</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal: Settings -->
+    <div class="modal" id="modal-settings">
+        <div class="modal-content">
+            <h3 class="modal-title">⚙️ 키오스크 환경 설정</h3>
+            <div style="text-align: left; display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; color: var(--book-emerald); font-weight: 700;">카메라 장치 선택</label>
+                <select id="select-camera-device" style="padding: 8px; border-radius: 8px; background: #000; color: #fff; border: 1px solid var(--border-color);"></select>
+
+                <label style="font-size: 12px; color: var(--book-emerald); font-weight: 700; margin-top: 8px;">프린터 장치 선택</label>
+                <select id="select-printer-device" style="padding: 8px; border-radius: 8px; background: #000; color: #fff; border: 1px solid var(--border-color);">
+                    <option value="default">시스템 기본 프린터 (브라우저 인쇄)</option>
+                </select>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+                    연결 대상: <span id="target-printer-name" style="color: #ffffff;">확인 중...</span>
+                </div>
+            </div>
+            <button class="btn-close-modal" id="btn-close-settings">닫기</button>
+        </div>
+    </div>
+
+    <!-- Modal: QR Code -->
+    <div class="modal" id="modal-qrcode">
+        <div class="modal-content">
+            <h3 class="modal-title">📱 모바일로 접속하기</h3>
+            <p style="font-size: 13px; color: var(--text-muted);">스마트폰 카메라로 QR코드를 스캔하여 책톡네컷에 접속하세요!</p>
+            <div id="qrcode-canvas-container" style="display: flex; justify-content: center; padding: 10px; background: #ffffff; border-radius: 12px; width: fit-content; margin: 0 auto;"></div>
+            <button class="btn-close-modal" id="btn-close-qr">닫기</button>
+        </div>
+    </div>
+
+    <!-- Modal: Print Notice -->
+    <div class="modal" id="modal-print-notice">
+        <div class="modal-content">
+            <h3 class="modal-title">🖨️ 인쇄 전송 완료</h3>
+            <p class="notice-text" style="font-size: 14px; color: #a7f3d0; line-height: 1.5;"></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/audio_effects.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/frame_renderer.js"></script>
+    <script src="js/qrcode_generator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

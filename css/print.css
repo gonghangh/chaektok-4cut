@@ -1,0 +1,83 @@
+/* 책톡네컷 (Chaektok 4-CUTS) Print Media Stylesheet */
+@page {
+    size: auto;
+    margin: 0mm;
+}
+
+@media print {
+    html, body {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* 모든 네비게이션 및 컨트롤 UI 숨김 */
+    .app-header,
+    #screen-welcome,
+    #screen-layout,
+    #screen-shooting,
+    #screen-customize,
+    .print-controls-side,
+    .modal,
+    .no-print {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* 인쇄 화면 및 완성 사진을 인화지/용지에 꽉 차게 출력 */
+    .screen-container {
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    #screen-print {
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+        z-index: 999999 !important;
+    }
+
+    .print-screen-layout,
+    .print-preview-side {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #print-final-thumb {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
