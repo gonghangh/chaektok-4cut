@@ -1,7 +1,9 @@
 # 📚 책톡네컷 (Chaektok 4-CUTS)
 
 > **책과 함께 나눈 따뜻한 이야기와 소중한 순간들을 4컷 사진에 담는 포토부스 키오스크 시스템**  
-> 9:16 터치 키오스크 & 모바일/PC 반응형 웹 지원, 300 DPI 초고화질 출력 최적화
+> 9:16 터치 키오스크 & 모바일/PC 반응형 웹 지원, 300 DPI 초고화질 출력 최적화  
+> 
+> 🌐 **온라인 라이브 체험하기**: [https://gonghangh.github.io/chaektok-4cut/](https://gonghangh.github.io/chaektok-4cut/)
 
 ![책톡네컷 로고](assets/chaektok_logo.png)
 
